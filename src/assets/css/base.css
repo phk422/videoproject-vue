@@ -1,0 +1,20 @@
+body {
+    width: 100vw;
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*解决滚动条消失*/
+html {
+    overflow-y: scroll;
+}
+
+:root {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+:root body {
+    position: absolute;
+}
