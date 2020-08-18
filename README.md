@@ -1,6 +1,6 @@
 # 基于Vue,ElementUI的在现视频点播地址
 
-[项目演示地址](http://182.92.148.170)
+[项目演示](http://182.92.148.170:8080)
 
 **使用到的技术**
 
@@ -25,13 +25,38 @@ UI框架：EelementUI
 
 **后端接口**
 
+打开vue.config.js配置服务接口地址：
+
+```javascript
+devServer: {
+		port: 8000, // 项目的端口号
+		// 跨域代理配置
+		proxy: {
+			'/api': {
+				target: 'http://localhost:8888', //这里是接口地址，接口地址联系作者获取
+				ws: true,//是否代理websockets
+				changeOrigin: true,   // 设置同源  默认false，是否需要改变原始主机头为目标URL
+				pathRewrite: {
+						'^/api': ''
+				}		
+			}
+		}
+	},
+```
+
+
+
 ```
 接口地址可添加微信/QQ获取：
 邮箱地址：1769476788@qq.com
 微信账号/QQ：1769476788
 ```
 
-后面将后端接口代码push上来，尽情期待！
+**个人微信**
+
+<img src="img/image-20200817121128341.png" alt="image-20200817121128341" style="zoom:25%;" />
+
+后面会将后端接口代码push上来！
 
 ### 安装依赖
 
@@ -44,6 +69,8 @@ npm install
 ```
 npm run serve
 ```
+
+启动服务后打开浏览器，访问http://localhost:8000
 
 ### 项目打包
 

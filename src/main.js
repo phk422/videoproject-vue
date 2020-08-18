@@ -12,7 +12,6 @@ Vue.config.productionTip = false   // 阻止控制台打印生产模式下的消
 Vue.use(ElementUI)
 Vue.use(VueCookies)
 
-// Vue.prototype.baseURL = "http://localhost:8080"
 Vue.prototype.baseURL = "/api"
 Vue.prototype.$user = Vue.$cookies.get("user")
 

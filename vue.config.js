@@ -17,8 +17,7 @@ module.exports = {
 		// 跨域代理配置
 		proxy: {
 			'/api': {
-				 target: 'http://182.92.148.170:8080',
-				// target: 'http://localhost:8080',
+				 target: 'http://localhost:8888', //这里是接口地址
 				ws: true,//是否代理websockets
 				changeOrigin: true,   // 设置同源  默认false，是否需要改变原始主机头为目标URL
 				pathRewrite: {
