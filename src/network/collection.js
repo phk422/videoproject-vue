@@ -12,7 +12,6 @@ export function userCollection(uid,vid) {
 	})
 }
 
-
 // 判断用户是否收藏
 export function isCollection(uid,vid) {
 	return request({

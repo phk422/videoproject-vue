@@ -103,7 +103,6 @@ export function getHotTen() {
 	return request({
 		url: "video/getHotTen"
 	})
-
 }
 
 // 为电影添加标签

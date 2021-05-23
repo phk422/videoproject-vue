@@ -15,9 +15,6 @@ Vue.use(VueCookies)
 Vue.prototype.baseURL = "/api"
 Vue.prototype.$user = Vue.$cookies.get("user")
 
-
-
-
 new Vue({
   render: h => h(App),
   router,

@@ -21,21 +21,21 @@ module.exports = {
 				ws: true,//是否代理websockets
 				changeOrigin: true,   // 设置同源  默认false，是否需要改变原始主机头为目标URL
 				pathRewrite: {
-						'^/api': ''
-				}		
+					'^/api': ''
+				}
 			}
 		}
 	},
 	//添加chainWebpack支持swf
 	chainWebpack: config => {
 		config.module
-				.rule('swf')
-				.test(/\.swf$/)
-				.use('url-loader')
-				.loader('url-loader')
-				.options({
-					limit: 10000
-				});
+			.rule('swf')
+			.test(/\.swf$/)
+			.use('url-loader')
+			.loader('url-loader')
+			.options({
+				limit: 10000
+			});
 	},
 	publicPath: ""
 }

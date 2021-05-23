@@ -32,9 +32,6 @@ export default {
 
   },
   created () {
-
-
-
     /**
      * 防止vuex中的state在界面刷新后丢失
      */
@@ -53,23 +50,22 @@ export default {
 </script>
 
 <style>
-  @import "assets/css/base.css";
+@import "assets/css/base.css";
 
-  #app {
-    overflow-y: scroll;
-  }
-  .searchd {
-    margin-top: 15px;
-    text-align: center;
-  }
+#app {
+  overflow-y: scroll;
+}
+.searchd {
+  margin-top: 15px;
+  text-align: center;
+}
 
 
-  /*.fade-enter-active,.fade-leave-active {
-    -webkit-transition:opacity 1s;
-    transition:opacity 1s
-  }
-  .fade-enter,.fade-leave-to {
-    opacity:0
-  }*/
-
-  </style>
+/*.fade-enter-active,.fade-leave-active {
+  -webkit-transition:opacity 1s;
+  transition:opacity 1s
+}
+.fade-enter,.fade-leave-to {
+  opacity:0
+}*/
+</style>
