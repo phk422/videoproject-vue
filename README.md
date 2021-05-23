@@ -29,19 +29,19 @@ UI框架：EelementUI
 
 ```javascript
 devServer: {
-		port: 8000, // 项目的端口号
-		// 跨域代理配置
-		proxy: {
-			'/api': {
-				target: 'http://localhost:8888', //这里是接口地址，接口地址联系作者获取
-				ws: true,//是否代理websockets
-				changeOrigin: true,   // 设置同源  默认false，是否需要改变原始主机头为目标URL
-				pathRewrite: {
-						'^/api': ''
-				}		
-			}
+	port: 8000, // 项目的端口号
+	// 跨域代理配置
+	proxy: {
+		'/api': {
+			target: 'http://localhost:8888', //这里是接口地址，接口地址联系作者获取
+			ws: true,//是否代理websockets
+			changeOrigin: true,   // 设置同源  默认false，是否需要改变原始主机头为目标URL
+			pathRewrite: {
+					'^/api': ''
+			}		
 		}
-	},
+	}
+},
 ```
 
 
