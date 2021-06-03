@@ -1,9 +1,9 @@
 <template>
   <div id="comment">
     <!--评论条数-->
-    <el-row style="font-size: 20px; padding-top: 10px"
-      >{{ comments.length }}条评论</el-row
-    >
+    <el-row
+      style="font-size: 20px; padding-top: 10px"
+    >{{ comments.length }}条评论</el-row>
     <!--评论框-->
     <el-row type="flex" align="middle" class="content">
       <el-col :span="2">
@@ -12,23 +12,24 @@
           class="u-avatar"
           src="~assets/img/icon/avatar.png"
           alt=""
-        />
-        <img v-else class="u-avatar" :src="baseURL + $user.avatarurl" alt="" />
+        >
+        <img v-else class="u-avatar" :src="baseURL + $user.avatarurl" alt="">
       </el-col>
       <el-col :span="15" :offset="1">
         <el-input
+          v-model="content"
           type="textarea"
           :rows="3"
           :disabled="!$user"
           :placeholder="$user ? '请输入评论' : '登陆后才可评论！'"
-          v-model="content"
-        >
-        </el-input>
+        />
       </el-col>
       <el-col :span="6" :offset="1">
-        <el-button type="primary" :disabled="!$user" @click.native="addComment"
-          >发布评论</el-button
-        >
+        <el-button
+          type="primary"
+          :disabled="!$user"
+          @click.native="addComment"
+        >发布评论</el-button>
       </el-col>
     </el-row>
     <!--评论内容-->
@@ -38,11 +39,10 @@
       type="flex"
       align="middle"
       justify="center"
-      >暂无评论！</el-row
-    >
-    <el-row class="content" v-for="(comment, index) in comments" :key="index">
+    >暂无评论！</el-row>
+    <el-row v-for="(comment, index) in comments" :key="index" class="content">
       <el-col :span="2">
-        <img class="u-avatar" :src="baseURL + comment.avatarurl" />
+        <img class="u-avatar" :src="baseURL + comment.avatarurl">
       </el-col>
       <el-col :span="21" :offset="1">
         <div class="u-nickname">{{ comment.nickname }}</div>
@@ -66,67 +66,67 @@
 </template>
 
 <script>
-import { getComments, addComment } from "network/comment";
-import { formatDate } from "assets/js/utils";
+import { getComments, addComment } from 'network/comment'
+import { formatDate } from 'assets/js/utils'
 export default {
-  name: "Comment",
+  name: 'Comment',
+  components: {},
   props: {
-    vid: Number,
+    vid: Number
   },
   data() {
     return {
-      content: "",
-      comments: [],
-    };
-  },
-  components: {},
-  methods: {
-    getDate(date) {
-      return formatDate(new Date(date), "yyyy-MM-dd hh:mm:ss");
-    },
-    // 添加评论
-    addComment() {
-      const user = this.$user;
-      if (user) {
-        if (this.content === "" || this.content === null) {
-          this.$message.warning("评论内容不能为空!");
-          return;
-        }
-        addComment(user.uid, this.vid, this.content).then((res) => {
-          if (res === 1) {
-            this.$message.info("发布评论成功！");
-            this.comments.splice(0, 0, {
-              avatarurl: user.avatarurl,
-              nickname: user.nickname,
-              content: this.content,
-              date: new Date(),
-            });
-            this.content = "";
-          }
-        });
-      }
-    },
-    // 删除当前评论
-    // deleteComment(contentId) {
-    // 	deleteCommentById(contentId) // 删除评论
-    //
-    // }
-  },
-  created() {
-    // 加载当前视频的评论
-    getComments(this.vid).then((res) => {
-      this.comments = res;
-    });
+      content: '',
+      comments: []
+    }
   },
   watch: {
     vid(newVal) {
       // 加载当前视频的评论
       getComments(newVal).then((res) => {
-        this.comments = res;
-      });
-    },
+        this.comments = res
+      })
+    }
   },
-};
+  created() {
+    // 加载当前视频的评论
+    getComments(this.vid).then((res) => {
+      this.comments = res
+    })
+  },
+  methods: {
+    getDate(date) {
+      return formatDate(new Date(date), 'yyyy-MM-dd hh:mm:ss')
+    },
+    // 添加评论
+    addComment() {
+      const user = this.$user
+      if (user) {
+        if (this.content === '' || this.content === null) {
+          this.$message.warning('评论内容不能为空!')
+          return
+        }
+        addComment(user.uid, this.vid, this.content).then((res) => {
+          if (res === 1) {
+            this.$message.info('发布评论成功！')
+            this.comments.splice(0, 0, {
+              avatarurl: user.avatarurl,
+              nickname: user.nickname,
+              content: this.content,
+              date: new Date()
+            })
+            this.content = ''
+          }
+        })
+      }
+    }
+    // 删除当前评论
+    // deleteComment(contentId) {
+    // 	deleteCommentById(contentId) // 删除评论
+    //
+    // }
+  }
+}
 </script>
 
 <style scoped>

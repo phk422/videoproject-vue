@@ -4,11 +4,10 @@
       <!--logo-->
       <el-col :sm="5" class="right">
         <a href="/home" class="tit">
-          <img src="~assets/img/icon/logo.png" class="logo" />
+          <img src="~assets/img/icon/logo.png" class="logo">
           <span>在线视频点播系统</span>
         </a>
-        <i class="search-icon el-icon-more" @click="drawer = true"></i
-        ><!--隐藏的部分-->
+        <i class="search-icon el-icon-more" @click="drawer = true" /><!--隐藏的部分-->
         <el-drawer
           append-to-body
           title="我是标题"
@@ -30,25 +29,27 @@
         <img
           v-if="!user"
           src="~assets/img/icon/avatar.png"
-          @click="dialogVisible = true"
           title="点击登录"
           class="el-avatar--medium"
           style="cursor: pointer"
           alt=""
-        />
+          @click="dialogVisible = true"
+        >
         <img
           v-else
           :src="baseURL + user.avatarurl"
           class="el-avatar--circle el-avatar--medium"
           alt=""
-        />
+        >
         <!--下拉菜单-->
         <el-dropdown class="drop">
           <span class="el-dropdown-link">
             <span v-if="user">{{ user.nickname }}</span>
-            <span v-else @click="dialogVisible = true" title="点击登录"
-              >登录/注册</span
-            >
+            <span
+              v-else
+              title="点击登录"
+              @click="dialogVisible = true"
+            >登录/注册</span>
 
             <!--登录弹窗-->
             <el-dialog
@@ -59,35 +60,32 @@
               center
             >
               <el-input
-                placeholder="请输入登录账号"
                 v-model="username"
+                placeholder="请输入登录账号"
                 clearable
-              >
-              </el-input>
-              <br />
-              <br />
+              />
+              <br>
+              <br>
               <el-input
-                placeholder="请输入密码"
                 v-model="password"
+                placeholder="请输入密码"
                 show-password
-              ></el-input>
-              <br />
-              <br />
-              <span class="register"
-                >没有账号？<a
-                  href="javascript:void(0)"
-                  @click="dialogVisible2 = true"
-                  >点击注册</a
-                ></span
-              >
+              />
+              <br>
+              <br>
+              <span
+                class="register"
+              >没有账号？<a
+                href="javascript:void(0)"
+                @click="dialogVisible2 = true"
+              >点击注册</a></span>
 
               <span slot="footer" class="dialog-footer">
                 <el-button
                   type="primary"
                   :loading="isLoading"
                   @click.native="loginBtn"
-                  >登 录</el-button
-                >
+                >登 录</el-button>
               </span>
             </el-dialog>
             <!--注册弹窗-->
@@ -99,7 +97,7 @@
               center
             >
               <el-col class="avatar-name" style="padding-bottom: 10px">
-                <img :src="imageUrl" class="avatar" /><br />
+                <img :src="imageUrl" class="avatar"><br>
                 <el-upload
                   ref="uploadImg"
                   class="avatar-uploader"
@@ -114,49 +112,46 @@
                     type="primary"
                     size="medium"
                     class="el-icon-plus avatar-uploader-icon"
-                    >上传头像</el-button
-                  >
+                  >上传头像</el-button>
                 </el-upload>
               </el-col>
 
               <el-input
-                placeholder="请输入您的昵称"
                 v-model="nickname"
+                placeholder="请输入您的昵称"
+                clearable
                 @blur="nickNameBlur"
-                clearable
-              >
-              </el-input>
-              <br />
-              <br />
+              />
+              <br>
+              <br>
               <el-input
-                placeholder="请输入手机号码"
                 v-model="phone"
-                @blur="phoneBlur"
+                placeholder="请输入手机号码"
                 clearable
-              >
-              </el-input>
-              <br />
-              <br />
+                @blur="phoneBlur"
+              />
+              <br>
+              <br>
               <el-input
-                placeholder="请输入密码"
                 v-model="password"
+                placeholder="请输入密码"
                 show-password
-              ></el-input>
-              <br />
-              <br />
+              />
+              <br>
+              <br>
               <el-input
-                placeholder="确认密码"
                 v-model="repassword"
+                placeholder="确认密码"
                 show-password
-              ></el-input>
-              <br />
-              <br />
+              />
+              <br>
+              <br>
               <el-input
-                placeholder="请输入验证码"
                 v-model="rcode"
+                placeholder="请输入验证码"
                 style="width: 45%; padding-right: 2px"
-              ></el-input>
-              <el-button type="primary" @click="getCode" :disabled="isBtn">{{
+              />
+              <el-button type="primary" :disabled="isBtn" @click="getCode">{{
                 code
               }}</el-button>
 
@@ -165,36 +160,35 @@
                   type="primary"
                   :loading="isLoading"
                   @click.native="register"
-                  >注 册</el-button
-                >
+                >注 册</el-button>
               </span>
             </el-dialog>
 
-            <i class="el-icon-arrow-down el-icon--right"></i>
+            <i class="el-icon-arrow-down el-icon--right" />
           </span>
           <el-dropdown-menu /><!--防止该标签隐藏的时候控制台会报错-->
-          <el-dropdown-menu slot="dropdown" class="iconsize" v-if="user">
-            <el-dropdown-item icon="el-icon-user-solid" class="size"
-              >个人资料</el-dropdown-item
-            >
+          <el-dropdown-menu v-if="user" slot="dropdown" class="iconsize">
+            <el-dropdown-item
+              icon="el-icon-user-solid"
+              class="size"
+            >个人资料</el-dropdown-item>
             <el-dropdown-item
               icon="el-icon-star-on"
               class="size"
               @click.native="toCollection"
-              >我的收藏
+            >我的收藏
             </el-dropdown-item>
             <el-dropdown-item
               icon="el-icon-video-camera-solid"
               class="size"
               @click.native="toHistory"
-              >播放历史
+            >播放历史
             </el-dropdown-item>
             <el-dropdown-item
               icon="el-icon-error"
               class="size"
               @click.native="exitLogin"
-              >退出</el-dropdown-item
-            >
+            >退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-col>
@@ -205,20 +199,20 @@
 </template>
 
 <script>
-import SearchBox from "../searchbox/SearchBox";
-import Profile from "./profile/Profile";
-import { userMixin } from "assets/js/mixin";
+import SearchBox from '../searchbox/SearchBox'
+import Profile from './profile/Profile'
+import { userMixin } from 'assets/js/mixin'
 
 export default {
-  name: "NavBar",
+  name: 'NavBar',
+  components: { Profile, SearchBox },
   mixins: [userMixin],
   data() {
     return {
-      drawer: false,
-    };
-  },
-  components: { Profile, SearchBox },
-};
+      drawer: false
+    }
+  }
+}
 </script>
 
 <style scoped>

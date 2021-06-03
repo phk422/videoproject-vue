@@ -1,14 +1,14 @@
 <template>
-  <div id="recommend" v-if="$user && videos.length > 0">
+  <div v-if="$user && videos.length > 0" id="recommend">
     <el-tag style="font-size: 15px" type="danger" effect="light">
       猜您喜欢
     </el-tag>
     <div class="text-container">
       <transition class="inner-container" name="slide" mode="out-in">
         <div
-          class="text"
           v-if="text.val !== undefined"
           :key="text.id"
+          class="text"
           @click="toPlayer(text.val)"
         >
           {{ text.val.vname }}
@@ -19,51 +19,51 @@
 </template>
 
 <script>
-import { getRecommendVideos } from "network/video";
-import { toPlayerMixin } from "assets/js/mixin";
+import { getRecommendVideos } from 'network/video'
+import { toPlayerMixin } from 'assets/js/mixin'
 
 export default {
-  name: "Recommend",
+  name: 'Recommend',
+  mixins: [toPlayerMixin],
   data() {
     return {
       videos: [],
-      number: 0,
-    };
-  },
-  mixins: [toPlayerMixin], // 混入toPlayer()方法
+      number: 0
+    }
+  }, // 混入toPlayer()方法
   computed: {
     text() {
       return {
         id: this.number,
-        val: this.videos[this.number],
-      };
-    },
+        val: this.videos[this.number]
+      }
+    }
   },
   mounted() {
-    this.startMove();
+    this.startMove()
   },
   created() {
-    const user = this.$user;
+    const user = this.$user
     if (user) {
       getRecommendVideos(user.uid).then((res) => {
-        this.videos = res;
-      });
+        this.videos = res
+      })
     }
   },
 
   methods: {
     startMove() {
-      let timer = setTimeout(() => {
+      setTimeout(() => {
         if (this.number === this.videos.length - 1) {
-          this.number = 0;
+          this.number = 0
         } else {
-          this.number += 1;
+          this.number += 1
         }
-        this.startMove();
-      }, 3000);
-    },
-  },
-};
+        this.startMove()
+      }, 3000)
+    }
+  }
+}
 </script>
 
 <style scoped>

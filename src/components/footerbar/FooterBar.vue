@@ -1,30 +1,35 @@
 <template>
   <div id="footer-bar">
     <div class="content">
-      <img class="logo" src="~assets/img/icon/logo.png" alt="" />
+      <img class="logo" src="~assets/img/icon/logo.png" alt="">
       <div class="author">By 彭宏坤</div>
       <el-popover placement="top" offset="10" width="150" trigger="hover">
-        <img class="er" src="~assets/img/icon/erweima.png" />
+        <img class="er" src="~assets/img/icon/erweima.png">
         <img
+          slot="reference"
           class="weixin"
           src="~assets/img/icon/weixin.png"
-          slot="reference"
-        />
-      </el-popover>
-      <a href="https://github.com/phk422" target="_blank"
-        ><img style="width: 30px" src="~assets/img/icon/github.png" alt=""
-      /></a>
-      <div class="statement">
-        视频来源：<a href="https://haokan.baidu.com/?fr=pc_pz" target="_blank"
-          >好看视频</a
         >
+      </el-popover>
+      <a
+        href="https://github.com/phk422"
+        target="_blank"
+      ><img
+        style="width: 30px"
+        src="~assets/img/icon/github.png"
+        alt=""
+      ></a>
+      <div class="statement">
+        视频来源：<a
+          href="https://haokan.baidu.com/?fr=pc_pz"
+          target="_blank"
+        >好看视频</a>
         |
         <a href="https://www.ixigua.com/" lo target="_blank">西瓜视频</a>
         图标来源：<a
           href="https://www.iconfont.cn/?spm=a313x.7781069.1998910419.d4d0a486a"
           target="_blank"
-          >阿里巴巴矢量图标库</a
-        >
+        >阿里巴巴矢量图标库</a>
       </div>
     </div>
   </div>
@@ -32,8 +37,8 @@
 
 <script>
 export default {
-  name: "FooterBar",
-};
+  name: 'FooterBar'
+}
 </script>
 
 <style scoped>

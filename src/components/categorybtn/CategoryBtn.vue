@@ -1,46 +1,46 @@
 <template>
   <div id="category-btn">
     <el-button
+      v-for="(item, index) in videoCategory"
+      :key="index"
       type="primary"
       size="medium"
       :plain="currentIndex != index"
-      v-for="(item, index) in videoCategory"
-      :key="index"
-      @click="btnClick(item.cid, index)"
       circle
-      >{{ item.cname }}
+      @click="btnClick(item.cid, index)"
+    >{{ item.cname }}
     </el-button>
   </div>
 </template>
 
 <script>
-import { getCategory, getPageBean } from "network/video";
+import { getCategory, getPageBean } from 'network/video'
 
 export default {
-  name: "CategoryBtn",
+  name: 'CategoryBtn',
   data() {
     return {
       currentIndex: 0,
-      videoCategory: [], // 电影分类
-    };
+      videoCategory: [] // 电影分类
+    }
   },
   created() {
-    getCategory().then((res) => (this.videoCategory = res));
+    getCategory().then((res) => (this.videoCategory = res))
     // 当组件加载的时候默认当前活跃页
     getPageBean(this.currentIndex + 1, 1, 6).then((res) => {
-      this.$store.commit("getPageBean", res);
-    });
+      this.$store.commit('getPageBean', res)
+    })
   },
   methods: {
     btnClick(cid, index) {
-      this.currentIndex = index;
+      this.currentIndex = index
       // 页码变为1
-      this.$store.commit("updatePage", 1);
-      this.$store.commit("saveCid", cid);
-      this.$store.dispatch("getPageBean");
-    },
-  },
-};
+      this.$store.commit('updatePage', 1)
+      this.$store.commit('saveCid', cid)
+      this.$store.dispatch('getPageBean')
+    }
+  }
+}
 </script>
 
 <style scoped>

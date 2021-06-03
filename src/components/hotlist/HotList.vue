@@ -1,13 +1,13 @@
 <template>
   <el-card class="box-card" :body-style="{ paddingTop: '0px' }">
     <div slot="header" class="clearfix">
-      <img src="~assets/img/icon/like.png" alt="" class="recommand-icon" />
+      <img src="~assets/img/icon/like.png" alt="" class="recommand-icon">
       <span>热播排行</span>
     </div>
     <div
       v-for="(video, index) in videos"
-      :title="video.vname"
       :key="index"
+      :title="video.vname"
       class="item"
       @click="toPlayer(video)"
     >
@@ -18,44 +18,44 @@
 </template>
 
 <script>
-import { getHotTen } from "network/video";
-import { toPlayerMixin } from "assets/js/mixin";
+import { getHotTen } from 'network/video'
+import { toPlayerMixin } from 'assets/js/mixin'
 
 export default {
-  name: "HotList",
+  name: 'HotList',
+  mixins: [toPlayerMixin],
   data() {
     return {
-      videos: [],
-    };
+      videos: []
+    }
   },
-  mixins: [toPlayerMixin],
-  methods: {},
   computed: {
     rank() {
       return (index) => {
         // index是使用时的参数
         // console.log(index)
         if (index === 1) {
-          return "first";
+          return 'first'
         }
         if (index === 2) {
-          return "second";
+          return 'second'
         }
         if (index === 3) {
-          return "third";
+          return 'third'
         }
         if (index > 3) {
-          return "other";
+          return 'other'
         }
-      };
-    },
+      }
+    }
   },
   created() {
     getHotTen().then((res) => {
-      this.videos = res;
-    });
+      this.videos = res
+    })
   },
-};
+  methods: {}
+}
 </script>
 
 <style scoped>

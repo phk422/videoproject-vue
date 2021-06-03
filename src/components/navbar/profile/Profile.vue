@@ -8,27 +8,29 @@
       width="85%"
       center
     >
-      <el-input placeholder="请输入登录账号" v-model="username" clearable>
-      </el-input>
-      <br />
-      <br />
+      <el-input v-model="username" placeholder="请输入登录账号" clearable />
+      <br>
+      <br>
       <el-input
-        placeholder="请输入密码"
         v-model="password"
+        placeholder="请输入密码"
         show-password
-      ></el-input>
-      <br />
-      <br />
-      <span class="register"
-        >没有账号？<a href="javascript:void(0)" @click="dialogVisible2 = true"
-          >点击注册</a
-        ></span
-      >
+      />
+      <br>
+      <br>
+      <span
+        class="register"
+      >没有账号？<a
+        href="javascript:void(0)"
+        @click="dialogVisible2 = true"
+      >点击注册</a></span>
 
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" :loading="isLoading" @click.native="loginBtn"
-          >登 录</el-button
-        >
+        <el-button
+          type="primary"
+          :loading="isLoading"
+          @click.native="loginBtn"
+        >登 录</el-button>
       </span>
     </el-dialog>
     <!--注册弹窗-->
@@ -40,7 +42,7 @@
       center
     >
       <el-col class="avatar-name" style="padding-bottom: 10px">
-        <img :src="imageUrl" class="avatar" /><br />
+        <img :src="imageUrl" class="avatar"><br>
         <el-upload
           ref="uploadImg"
           class="avatar-uploader"
@@ -55,68 +57,66 @@
             type="primary"
             size="medium"
             class="el-icon-plus avatar-uploader-icon"
-            >上传头像</el-button
-          >
+          >上传头像</el-button>
         </el-upload>
       </el-col>
 
       <el-input
-        placeholder="请输入您的昵称"
         v-model="nickname"
+        placeholder="请输入您的昵称"
+        clearable
         @blur="nickNameBlur"
-        clearable
-      >
-      </el-input>
-      <br />
-      <br />
+      />
+      <br>
+      <br>
       <el-input
-        placeholder="请输入手机号码"
         v-model="phone"
-        @blur="phoneBlur"
+        placeholder="请输入手机号码"
         clearable
-      >
-      </el-input>
-      <br />
-      <br />
+        @blur="phoneBlur"
+      />
+      <br>
+      <br>
       <el-input
-        placeholder="请输入密码"
         v-model="password"
+        placeholder="请输入密码"
         show-password
-      ></el-input>
-      <br />
-      <br />
+      />
+      <br>
+      <br>
       <el-input
-        placeholder="确认密码"
         v-model="repassword"
+        placeholder="确认密码"
         show-password
-      ></el-input>
-      <br />
-      <br />
+      />
+      <br>
+      <br>
       <el-input
-        placeholder="请输入验证码"
         v-model="rcode"
+        placeholder="请输入验证码"
         style="width: 45%; padding-right: 2px"
-      ></el-input>
-      <el-button type="primary" @click="getCode" :disabled="isBtn">{{code}}</el-button>
+      />
+      <el-button type="primary" :disabled="isBtn" @click="getCode">{{ code }}</el-button>
 
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" :loading="isLoading" @click.native="register"
-          >注 册</el-button
-        >
+        <el-button
+          type="primary"
+          :loading="isLoading"
+          @click.native="register"
+        >注 册</el-button>
       </span>
     </el-dialog>
 
     <el-row justify="center">
       <el-col class="avatar-name">
-        <img :src="baseURL + user.avatarurl" class="avatar" v-if="user" />
-        <img src="~assets/img/icon/avatar.png" class="avatar" v-else /><br />
+        <img v-if="user" :src="baseURL + user.avatarurl" class="avatar">
+        <img v-else src="~assets/img/icon/avatar.png" class="avatar"><br>
         <el-button
+          v-if="!user"
           type="danger"
           size="small"
           @click="dialogVisible = true"
-          v-if="!user"
-          >登录/注册</el-button
-        >
+        >登录/注册</el-button>
         <span v-else>{{ user.nickname }}</span>
       </el-col>
     </el-row>
@@ -124,13 +124,13 @@
     <div class="graySpace" />
     <el-row :gutter="3">
       <el-col
-        :span="8"
-        class="item"
         v-for="(item, index) in items"
         :key="index"
+        :span="8"
+        class="item"
         @click.native="itemClick(item.item)"
       >
-        <img :src="item.img" alt="" class="icon-img" />
+        <img :src="item.img" alt="" class="icon-img">
         <div class="detail">{{ item.item }}</div>
       </el-col>
     </el-row>
@@ -138,41 +138,42 @@
 </template>
 
 <script>
-import { userMixin } from "assets/js/mixin";
+import { userMixin } from 'assets/js/mixin'
 
 export default {
-  name: "Profile",
+  name: 'Profile',
   mixins: [userMixin],
   data() {
     return {
       items: [
-        { img: require("assets/img/icon/history.png"), item: "历史记录" },
-        { img: require("assets/img/icon/mylike.png"), item: "我的收藏" },
-        { img: require("assets/img/icon/profile.png"), item: "个人资料" },
-        { img: require("assets/img/icon/exit.png"), item: "退出登录" },
-      ],
-    };
+        { img: require('assets/img/icon/history.png'), item: '历史记录' },
+        { img: require('assets/img/icon/mylike.png'), item: '我的收藏' },
+        { img: require('assets/img/icon/profile.png'), item: '个人资料' },
+        { img: require('assets/img/icon/exit.png'), item: '退出登录' }
+      ]
+    }
   },
   methods: {
     itemClick(item) {
       if (this.user === null) {
         this.$message({
-          message: "尚未登录！",
-          type: "warning",
-        });
+          message: '尚未登录！',
+          type: 'warning'
+        })
       } else {
-        if (item === "我的收藏") {
-          this.toCollection();
-        } else if (item === "历史记录") {
-          this.toHistory();
-        } else if (item === "个人资料") {
+        if (item === '我的收藏') {
+          this.toCollection()
+        } else if (item === '历史记录') {
+          this.toHistory()
+        } else if (item === '个人资料') {
+          // todo
         } else {
-          this.exitLogin();
+          this.exitLogin()
         }
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>

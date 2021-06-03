@@ -1,6 +1,6 @@
 <template>
   <el-col style="padding-right: 7px; padding-left: 7px">
-    <div style="cursor: pointer" @click="toPlayer(video)" :title="video.vname">
+    <div style="cursor: pointer" :title="video.vname" @click="toPlayer(video)">
       <el-card :body-style="{ padding: '0px' }" class="card">
         <div class="imgs">
           <el-image
@@ -13,7 +13,7 @@
             src="~assets/img/icon/play-icon.png"
             class="play-icon el-image"
             alt=""
-          />
+          >
         </div>
         <div style="padding: 14px">
           <span class="tit">{{ video.vname }}</span>
@@ -32,29 +32,29 @@
 </template>
 
 <script>
-import { handleVisited } from "assets/js/utils";
-import { toPlayerMixin } from "assets/js/mixin";
+import { handleVisited } from 'assets/js/utils'
+import { toPlayerMixin } from 'assets/js/mixin'
 
 export default {
-  name: "MovieItem",
+  name: 'MovieItem',
   mixins: [toPlayerMixin],
   props: {
     video: {
       type: Object,
-      default: null,
+      default: null
     },
     // 时间前的描述
     dateTit: {
       type: String,
-      default: "",
-    },
+      default: ''
+    }
   },
   methods: {
     getVisited(visited) {
-      return handleVisited(visited);
-    },
-  },
-};
+      return handleVisited(visited)
+    }
+  }
+}
 </script>
 
 <style scoped>
