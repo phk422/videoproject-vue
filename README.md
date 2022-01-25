@@ -37,7 +37,7 @@ devServer: {
 			ws: true,//是否代理websockets
 			changeOrigin: true,   // 设置同源  默认false，是否需要改变原始主机头为目标URL
 			pathRewrite: {
-					'^/api': ''
+				'^/api': ''
 			}		
 		}
 	}
@@ -54,7 +54,7 @@ devServer: {
 
 **个人微信**
 
-<img src="img/image-20200817121128341.png" alt="image-20200817121128341" style="zoom:25%;" />
+<img src="img/image-20200817121128341.png" alt="image-20200817121128341" width="260px" />
 
 后面会将后端接口代码push上来！
 
